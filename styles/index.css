@@ -1,0 +1,74 @@
+:root {
+  --font-primary: Inter, sans-serif;
+  --font-size-xs: 0.9rem;
+  --font-size-s: 1rem;
+  --font-size-m: 1.5rem;
+  --font-size-l: 2rem;
+  --font-size-xl: 2.5rem;
+  --clr-white: hsl(255, 100%, 100%);
+  --clr-black: hsl(0, 2%, 11%);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body,
+button,
+input {
+  font-family: var(--font-primary);
+}
+
+/* Utility */
+.flex {
+  display: flex;
+}
+
+/* 
+Nav  
+*/
+.nav {
+  background: url("../assets/images/nav-bg.png");
+  background-size: cover;
+  background-position-y: 20%;
+  padding: 6em 0;
+  position: relative;
+  justify-content: space-between;
+}
+
+.nav-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--clr-black);
+  opacity: 0.8;
+}
+
+.title {
+  margin: 0;
+  font-size: var(--font-size-xl);
+  font-weight: 800;
+  line-height: 0.55;
+  letter-spacing: -1.926px;
+}
+
+.nav-link {
+  color: var(--clr-white);
+  z-index: 99;
+  text-decoration: none;
+}
+
+.nav-link--sm {
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  line-height: 1.43;
+}
