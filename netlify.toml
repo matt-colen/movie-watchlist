@@ -1,7 +1,7 @@
 [build]
   command = "npm install && npm start"  
   functions = "server/"
-  publish = "public/"  #
+  publish = "public/"
   port = 5500  
   environment = { PORT = 5500 }  
 
