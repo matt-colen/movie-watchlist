@@ -3,4 +3,4 @@
   functions = "server/"
   publish = "public/"
   port = 5500
-  environment = { PORT = 5500 }
+  environment = { PORT = "5500" }
