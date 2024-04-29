@@ -1,4 +1,7 @@
 [build]
-  base = "./public"
-  publish = "."    
-  command = "npm install" # Optional: you can include this if you need to run any build steps or install dependencies
+  command = "npm install && npm start"  
+  functions = "server/"
+  publish = "public/"  #
+  port = 5500  
+  environment = { PORT = 5500 }  
+
