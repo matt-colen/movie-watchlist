@@ -1,0 +1,4 @@
+[build]
+  base = "./public"
+  publish = "."    
+  command = "npm install" # Optional: you can include this if you need to run any build steps or install dependencies
