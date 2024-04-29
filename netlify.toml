@@ -1,5 +1,5 @@
 [build]
-  command = "cd server && npm install && npm start"
+  command = "node server/server.js"
   functions = "server/"
   publish = "public/"
   port = 5500
