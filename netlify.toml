@@ -1,6 +1,0 @@
-[build]
-  command = "node server/server.js"
-  functions = "server/"
-  publish = "public/"
-  port = 5500
-  environment = { PORT = "5500" }
