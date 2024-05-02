@@ -1,6 +1,6 @@
 import axios from "axios";
 
-exports.handler = async (event, context) => {
+exports.handler = async (event) => {
   try {
     const { title } = event.queryStringParameters;
     const OMDB_API_KEY = process.env.OMDB_API_KEY; // Access environment variable

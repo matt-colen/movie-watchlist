@@ -1,12 +1,17 @@
 document.getElementById("search-form").addEventListener("submit", (e) => {
   e.preventDefault();
   const searchInput = document.getElementById("search-bar__input");
-  getMovies(searchInput.value);
-  searchInput.value = "";
+  fetchMovieData(searchInput.value).then((data) => {
+    console.log(data);
+    // Do something with the movie data
+  });
 });
 
-const getMovies = async (input) => {
-  const res = await fetch(`/api/movie/${input}`);
+// Function to fetch movie data
+const fetchMovieData = async (title) => {
+  const res = await fetch(
+    `../functions/movieSearch.js?title="${encodeURIComponent(title)}`
+  );
   const data = await res.json();
-  console.log(data);
+  return data;
 };
