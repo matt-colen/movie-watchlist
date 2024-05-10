@@ -5,28 +5,18 @@ document.getElementById("search-form").addEventListener("submit", (e) => {
   renderMovies(searchInput);
 });
 
-// Function to fetch movie data
+// Fetch movie data
 const fetchMovieData = async (title) => {
   try {
-    const response = await fetch(
-      `/.netlify/functions/movieSearch?title=${title}`
-    );
-    if (!response.ok) {
-      throw new Error("Failed to fetch movie data");
-    }
-    return await response.json();
-  } catch (error) {
-    throw new Error("Failed to fetch movie data");
+    const res = await fetch(`/.netlify/functions/movieSearch?title=${title}`);
+    return await res.json();
+  } catch (e) {
+    console.error(e);
   }
 };
 
-// Function to render movie data
+// Render movie data
 const renderMovies = async (input) => {
-  try {
-    const data = await fetchMovieData(input);
-    console.log(data);
-    // Do something with the movie data
-  } catch (error) {
-    console.error(error);
-  }
+  const data = await fetchMovieData(input);
+  console.log(data);
 };
