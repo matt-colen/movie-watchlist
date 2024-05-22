@@ -173,6 +173,8 @@ Results section
 */
 .results {
   padding-top: 20vh;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .icon__container {
@@ -189,9 +191,7 @@ Results section
 Movies
 */
 .movie {
-  max-width: 600px;
-  margin: 0 auto;
-  grid-template-columns: 1fr 3.42fr;
+  grid-template-columns: 1fr;
   align-items: center;
   gap: 1.5em;
   text-align: start;
@@ -241,7 +241,10 @@ Movies
 }
 
 .movie__details--secondary {
-  margin-bottom: 0.5em;
+  flex-flow: column;
+  align-items: start;
+  margin-bottom: 1em;
+  gap: 0.35em;
 }
 
 .movie-length {
@@ -268,6 +271,12 @@ Movies
   line-height: 1.43;
 }
 
+.movie-divider {
+  color: var(--clr-light-gray);
+  height: 1.5px;
+  margin: 1.5em 0;
+}
+
 @media (min-width: 500px) {
   .nav {
     flex-flow: row;
@@ -281,5 +290,14 @@ Movies
   .btn--primary {
     border-radius: 0 var(--radius-soft) var(--radius-soft) 0;
     padding: 0 2em;
+  }
+  .movie {
+    grid-template-columns: 1fr 3.42fr;
+  }
+  .movie__details--secondary {
+    flex-flow: row;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 0.5em;
   }
 }

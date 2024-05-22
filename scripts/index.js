@@ -3,7 +3,7 @@ const results = document.getElementById("results");
 document.getElementById("search-form").addEventListener("submit", (e) => {
   const searchInput = document.getElementById("search-bar__input").value;
   e.preventDefault();
-  renderMovies(searchInput);
+  searchInput && renderMovies(searchInput);
 });
 
 // Fetch movie results
@@ -17,10 +17,11 @@ const fetchMovieResults = async (userInput) => {
     if (data.Response === "True") {
       return fetchMovieDetails(data);
     } else {
-      results.innerHTML = `<p>No movies found</p>`;
+      return [];
     }
   } catch (e) {
     console.error(e);
+    return null;
   }
 };
 
@@ -45,6 +46,16 @@ const renderMovies = async (input) => {
   let html = "";
 
   clearPreviousSearch();
+
+  if (!movieData) {
+    results.innerHTML = `<p>An error occured. Please try again</p>`;
+    return;
+  }
+
+  if (movieData.length === 0) {
+    results.innerHTML = `<p>No movies found</p>`;
+    return;
+  }
 
   movieData.forEach((movie) => {
     html += `
@@ -87,6 +98,7 @@ const renderMovies = async (input) => {
         </div>
       </div>
     </div>
+    <hr class="movie-divider" />
     `;
   });
 
