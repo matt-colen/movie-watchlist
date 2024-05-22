@@ -50,9 +50,50 @@
       </form>
 
       <section id="results" class="results">
-        <div class="icon__container">
+        <!-- <div class="icon__container">
           <img src="assets/icons/exploring.svg" alt="Exploring icon" />
           <p>Start exploring</p>
+        </div> -->
+        <div class="movie grid">
+          <img
+            class="movie__poster"
+            src="https://images.unsplash.com/photo-1715313200229-0326e4fd2e5e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHx8"
+            alt=""
+          />
+          <div class="movie__details">
+            <div class="movie__details--primary flex">
+              <h2 class="movie-title">Movie Name</h2>
+              <div class="movie-rating__container flex">
+                <img
+                  class="icon--favorite"
+                  src="assets/icons/star.svg"
+                  alt="Star icon"
+                />
+                <p id="movie-rating" class="movie-rating">8.1</p>
+              </div>
+            </div>
+            <div class="movie__details--secondary flex">
+              <p id="movie-length" class="movie-length">117 min</p>
+              <p id="movie-genres" class="movie-genres">
+                Action, sci-fi, drama
+              </p>
+              <button class="btn btn--watchlist flex">
+                <img
+                  class="icon--watchlist"
+                  src="assets/icons/watchlist.svg"
+                  alt="Add to watchlist icon"
+                />
+                Watchlist
+              </button>
+            </div>
+            <div id="movie__details--text" class="movie__details--text">
+              <p>
+                A blade runner must pursue and terminate four replicants whole
+                stole a ship in space, and have returned to Earth to find their
+                creator.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
     </main>
