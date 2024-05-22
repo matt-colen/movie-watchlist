@@ -13,8 +13,9 @@
     <link rel="stylesheet" href="styles/index.css" />
     <script src="scripts/index.js" type="module" defer></script>
   </head>
-  <body>
-    <header class="header-grid grid">
+
+  <body class="grid">
+    <header class="header grid">
       <nav class="nav flex">
         <div class="nav-overlay"></div>
         <a class="nav-link" href="index.html">
@@ -25,6 +26,7 @@
         >
       </nav>
     </header>
+
     <main class="main">
       <!-- Search bar -->
       <form id="search-form">
@@ -47,12 +49,9 @@
         </div>
       </form>
 
-      <section id="results">
+      <section id="results" class="results">
         <div class="icon__container">
-          <img
-            src="assets/icons/exploring.svg"
-            alt="Exploring decorative icon"
-          />
+          <img src="assets/icons/exploring.svg" alt="Exploring icon" />
           <p>Start exploring</p>
         </div>
       </section>

@@ -1,6 +1,5 @@
 document.getElementById("search-form").addEventListener("submit", (e) => {
   const searchInput = document.getElementById("search-bar__input").value;
-
   e.preventDefault();
   renderMovies(searchInput);
 });
