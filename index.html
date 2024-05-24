@@ -19,7 +19,7 @@
       <nav class="nav flex">
         <div class="nav-overlay"></div>
         <a class="nav-link" href="index.html">
-          <h1 class="title">Find your film</h1>
+          <h1 class="title">Find Movies</h1>
         </a>
         <a class="nav-link nav-link--sm" href="pages/watchlist.html"
           >My Watchlist</a
@@ -31,25 +31,20 @@
       <!-- Search bar -->
       <form id="search-form">
         <div class="search-bar grid">
-          <div class="search-bar__input-container flex">
-            <label class="flex" for="search-bar__input">
-              <img src="assets/icons/Search.svg" alt="Search icon" />
-            </label>
-            <input
-              id="search-bar__input"
-              class="search-bar__input"
-              type="search"
-              placeholder="Search for a movie"
-              aria-label="Search for a movie"
-            />
-          </div>
+          <input
+            id="search-bar__input"
+            class="search-bar__input"
+            type="search"
+            placeholder="Search for movies"
+            aria-label="Search for movies"
+          />
           <button id="search-btn" class="btn btn--primary" type="submit">
             Search
           </button>
         </div>
       </form>
 
-      <section id="results" class="results">
+      <section id="results" class="results grid">
         <div class="icon__container">
           <img src="assets/icons/exploring.svg" alt="Exploring icon" />
           <p>Start exploring</p>

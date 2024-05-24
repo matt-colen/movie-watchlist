@@ -98,7 +98,6 @@ const renderMovies = async (input) => {
         </div>
       </div>
     </div>
-    <hr class="movie-divider" />
     `;
   });
 
