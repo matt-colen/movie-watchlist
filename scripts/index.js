@@ -1,4 +1,5 @@
 const results = document.getElementById("results");
+let moviesOnPage;
 
 // Fetch movie results
 const fetchMovieResults = async (userInput) => {
@@ -40,6 +41,7 @@ const clearPreviousSearch = () => {
 // Render movie data
 const renderMovies = async (input) => {
   const movieData = await fetchMovieResults(input);
+  moviesOnPage = [...movieData];
   let html = "";
 
   clearPreviousSearch();
@@ -50,13 +52,12 @@ const renderMovies = async (input) => {
   }
 
   if (movieData.length === 0) {
-    results.innerHTML = `<p>No movies found</p>`;
+    results.innerHTML = `<p>No movies found. Please try another search.</p>`;
     return;
   }
 
   movieData.forEach((movie) => {
     const inWatchlist = localStorage.getItem(`watchlist-${movie.imdbID}`);
-    console.log(inWatchlist);
 
     html += `
     <div id="${movie.imdbID}" class="movie grid">
@@ -101,25 +102,24 @@ const renderMovies = async (input) => {
   results.innerHTML = html;
 };
 
-document.getElementById("search-form").addEventListener("submit", (e) => {
-  const searchInput = document.getElementById("search-bar__input").value;
-  e.preventDefault();
-  searchInput && renderMovies(searchInput);
-});
-
-document.getElementById("results").addEventListener("click", (e) => {
-  const movieId = e.target.dataset.watchlist;
-  if (movieId) {
-    addMovieToWatchlist(movieId);
-  }
-});
-
-const addMovieToWatchlist = (id) => {
+const updateMovieWatchlist = (id) => {
   if (!localStorage.getItem(`watchlist-${id}`)) {
-    localStorage.setItem(`watchlist-${id}`, `${id}`);
+    const movieOnPage = moviesOnPage.find((movie) => movie.imdbID === id);
+    const { Poster, Title, imdbRating, Runtime, Genre, Plot, imdbID } =
+      movieOnPage;
+    const movieDetails = {
+      id: imdbID,
+      poster: Poster,
+      title: Title,
+      rating: imdbRating,
+      length: Runtime,
+      genre: Genre,
+      plot: Plot,
+    };
+    localStorage.setItem(`watchlist-${id}`, JSON.stringify(movieDetails));
     watchlistBtnRender(id);
   } else {
-    localStorage.removeItem(`watchlist-${id}`, `${id}`);
+    localStorage.removeItem(`watchlist-${id}`);
     watchlistBtnRender(id);
   }
 };
@@ -131,3 +131,20 @@ const watchlistBtnRender = (id) => {
     : (watchlistBtn.textContent = "Remove from Watchlist");
   watchlistBtn.classList.toggle("btn--remove");
 };
+
+document.getElementById("search-form").addEventListener("submit", (e) => {
+  const searchInput = document.getElementById("search-bar__input").value;
+  e.preventDefault();
+  searchInput
+    ? renderMovies(searchInput)
+    : (document.getElementById(
+        "results"
+      ).innerHTML = `<p>Unable to find what you’re looking for. Please try another search.</p>`);
+});
+
+document.getElementById("results").addEventListener("click", (e) => {
+  const movieId = e.target.dataset.watchlist;
+  if (movieId) {
+    updateMovieWatchlist(movieId);
+  }
+});
