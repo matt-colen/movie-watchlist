@@ -1,11 +1,5 @@
 const results = document.getElementById("results");
 
-document.getElementById("search-form").addEventListener("submit", (e) => {
-  const searchInput = document.getElementById("search-bar__input").value;
-  e.preventDefault();
-  searchInput && renderMovies(searchInput);
-});
-
 // Fetch movie results
 const fetchMovieResults = async (userInput) => {
   try {
@@ -38,7 +32,10 @@ const fetchMovieDetails = async (movies) => {
 };
 
 // Clears previous search results
-const clearPreviousSearch = () => (results.innerHTML = "");
+const clearPreviousSearch = () => {
+  results.innerHTML = "";
+  document.getElementById("search-bar__input").value = "";
+};
 
 // Render movie data
 const renderMovies = async (input) => {
@@ -58,8 +55,11 @@ const renderMovies = async (input) => {
   }
 
   movieData.forEach((movie) => {
+    const inWatchlist = localStorage.getItem(`watchlist-${movie.imdbID}`);
+    console.log(inWatchlist);
+
     html += `
-    <div class="movie grid">
+    <div id="${movie.imdbID}" class="movie grid">
       <img
         class="movie__poster"
         src="${movie.Poster}"
@@ -82,15 +82,12 @@ const renderMovies = async (input) => {
           <p id="movie-genres" class="movie-genres">
             ${movie.Genre}
           </p>
-          <button class="btn btn--watchlist flex">
-            <img
-              class="icon--watchlist"
-              src="assets/icons/watchlist.svg"
-              alt="Add to watchlist icon"
-            />
-            Watchlist
-          </button>
         </div>
+        <button class="${
+          inWatchlist ? "btn btn--watchlist btn--remove" : "btn btn--watchlist"
+        }" data-watchlist=${movie.imdbID}>${
+      inWatchlist ? "Remove from Watchlist" : "Add to Watchlist"
+    }</button>
         <div id="movie__details--text" class="movie__details--text">
           <p>
             ${movie.Plot}
@@ -102,4 +99,35 @@ const renderMovies = async (input) => {
   });
 
   results.innerHTML = html;
+};
+
+document.getElementById("search-form").addEventListener("submit", (e) => {
+  const searchInput = document.getElementById("search-bar__input").value;
+  e.preventDefault();
+  searchInput && renderMovies(searchInput);
+});
+
+document.getElementById("results").addEventListener("click", (e) => {
+  const movieId = e.target.dataset.watchlist;
+  if (movieId) {
+    addMovieToWatchlist(movieId);
+  }
+});
+
+const addMovieToWatchlist = (id) => {
+  if (!localStorage.getItem(`watchlist-${id}`)) {
+    localStorage.setItem(`watchlist-${id}`, `${id}`);
+    watchlistBtnRender(id);
+  } else {
+    localStorage.removeItem(`watchlist-${id}`, `${id}`);
+    watchlistBtnRender(id);
+  }
+};
+
+const watchlistBtnRender = (id) => {
+  const watchlistBtn = document.querySelector(`#${id} .btn--watchlist`);
+  watchlistBtn.textContent === "Remove from Watchlist"
+    ? (watchlistBtn.textContent = "Add to Watchlist")
+    : (watchlistBtn.textContent = "Remove from Watchlist");
+  watchlistBtn.classList.toggle("btn--remove");
 };
