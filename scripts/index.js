@@ -1,7 +1,7 @@
 const results = document.getElementById("results");
-let moviesOnPage;
+let moviesOnPage; // Container for actively searched movies
 
-// Fetch movie results
+// Fetch movie results from user search
 const fetchMovieResults = async (userInput) => {
   try {
     const res = await fetch(
@@ -20,7 +20,7 @@ const fetchMovieResults = async (userInput) => {
   }
 };
 
-// Fetch movie details for each result
+// Fetch full movie details for each search result
 const fetchMovieDetails = async (movies) => {
   const movieData = movies.Search.map(async (movie) => {
     const movieId = movie.imdbID;
@@ -32,13 +32,13 @@ const fetchMovieDetails = async (movies) => {
   return await Promise.all(movieData);
 };
 
-// Clears previous search results
+// Clears previous search results from input field and results section
 const clearPreviousSearch = () => {
   results.innerHTML = "";
   document.getElementById("search-bar__input").value = "";
 };
 
-// Render movie data
+// Renders movie data in results section
 const renderMovies = async (input) => {
   const movieData = await fetchMovieResults(input);
   moviesOnPage = [...movieData];
@@ -48,11 +48,6 @@ const renderMovies = async (input) => {
 
   if (!movieData) {
     results.innerHTML = `<p>An error occured. Please try again</p>`;
-    return;
-  }
-
-  if (movieData.length === 0) {
-    results.innerHTML = `<p>No movies found. Please try another search.</p>`;
     return;
   }
 
@@ -102,6 +97,7 @@ const renderMovies = async (input) => {
   results.innerHTML = html;
 };
 
+// Updates watchlist in localStorage
 const updateMovieWatchlist = (id) => {
   if (!localStorage.getItem(`watchlist-${id}`)) {
     const movieOnPage = moviesOnPage.find((movie) => movie.imdbID === id);
@@ -124,6 +120,7 @@ const updateMovieWatchlist = (id) => {
   }
 };
 
+// Renders the applicable watchlist btn styling
 const watchlistBtnRender = (id) => {
   const watchlistBtn = document.querySelector(`#${id} .btn--watchlist`);
   watchlistBtn.textContent === "Remove from Watchlist"

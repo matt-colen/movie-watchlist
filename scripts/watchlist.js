@@ -1,4 +1,4 @@
-// Get all watchlist items from localStorage
+// Fetches all watchlist items from localStorage
 const getAllWatchlistItems = () => {
   const items = [];
   Object.keys(localStorage).forEach((key) => {
@@ -11,7 +11,7 @@ const getAllWatchlistItems = () => {
   return items;
 };
 
-// Render watchlist movies
+// Renders watchlist movies in the results section
 const renderMovies = () => {
   const watchlistItems = getAllWatchlistItems();
 
@@ -66,13 +66,7 @@ const renderMovies = () => {
   }
 };
 
-document.getElementById("results").addEventListener("click", (e) => {
-  const movieId = e.target.dataset.watchlist;
-  if (movieId) {
-    updateMovieWatchlist(movieId);
-  }
-});
-
+// Updates movie watchlist in localStorage
 const updateMovieWatchlist = (id) => {
   if (!localStorage.getItem(`watchlist-${id}`)) {
     const movieOnPage = moviesOnPage.find((movie) => movie.imdbID === id);
@@ -95,6 +89,7 @@ const updateMovieWatchlist = (id) => {
   }
 };
 
+// Updates watchlist btn styling
 const watchlistBtnRender = (id) => {
   const watchlistBtn = document.querySelector(`#${id} .btn--watchlist`);
   watchlistBtn.textContent === "Remove from Watchlist"
@@ -104,4 +99,12 @@ const watchlistBtnRender = (id) => {
   renderMovies();
 };
 
+// Initial call to render the localStorage items
 renderMovies();
+
+document.getElementById("results").addEventListener("click", (e) => {
+  const movieId = e.target.dataset.watchlist;
+  if (movieId) {
+    updateMovieWatchlist(movieId);
+  }
+});

@@ -44,9 +44,7 @@ input {
   font-family: var(--font-primary);
 }
 
-/* 
-Utility 
-*/
+/* Utility */
 .flex {
   display: flex;
 }
@@ -55,9 +53,7 @@ Utility
   display: grid;
 }
 
-/* 
-Header  
-*/
+/* Header */
 .header {
   grid-area: head;
   grid-template-columns: 5% 1fr 5%;
@@ -111,18 +107,14 @@ Header
   line-height: 1.43;
 }
 
-/* 
-Main  
-*/
+/* Main */
 .main {
   grid-area: main;
   text-align: center;
   position: relative;
 }
 
-/* 
-Search bar  
-*/
+/* Search bar */
 .search-bar {
   width: 100%;
   max-width: 700px;
@@ -145,11 +137,8 @@ Search bar
   border-radius: var(--radius-soft) var(--radius-soft) 0 0;
 }
 
-/* 
-Buttons  
-*/
+/* Buttons */
 .btn {
-  background: none;
   border: none;
   cursor: pointer;
   transition: var(--transition-quick);
@@ -163,7 +152,6 @@ Buttons
 }
 
 .btn--primary {
-  background: var(--clr-cta);
   border: 1px solid var(--clr-cta);
   border-radius: 0 0 var(--radius-soft) var(--radius-soft);
   padding: 1em 0;
@@ -172,7 +160,7 @@ Buttons
 .btn--watchlist {
   width: 100%;
   margin: 1em 0;
-  padding: 0.75em 1em;
+  padding: 1em;
 }
 
 .btn--remove {
@@ -183,12 +171,9 @@ Buttons
   background: var(--clr-remove-hover);
 }
 
-/* 
-Results section  
-*/
+/* Results section */
 .results {
   padding: 20vh 0;
-  grid-template-columns: 1fr;
   margin: 0 auto;
   gap: 5em;
 }
@@ -200,14 +185,11 @@ Results section
   line-height: 1.11;
 }
 
-/* 
-Movies
-*/
+/* Movies */
 .movie {
   align-items: center;
-  gap: 1.5em;
+  gap: 2em;
   text-align: start;
-  grid-template-columns: 1fr;
 }
 
 .movie__poster {
@@ -222,7 +204,7 @@ Movies
 
 .movie__details--primary {
   gap: 0.5em;
-  margin-bottom: 0.69em;
+  margin-bottom: 0.5em;
   align-items: start;
 }
 
@@ -230,11 +212,6 @@ Movies
   font-size: var(--font-size-m);
   font-weight: 500;
   line-height: 1.11;
-}
-
-.icon--favorite {
-  height: 15px;
-  width: 15px;
 }
 
 .movie-rating__container {
@@ -251,7 +228,6 @@ Movies
 .movie__details--secondary {
   flex-flow: column;
   align-items: start;
-  gap: 0.35em;
   flex-flow: row;
   align-items: center;
   gap: 0;
@@ -261,17 +237,13 @@ Movies
   margin-right: 1.19em;
 }
 
-.movie-genres {
-  margin-right: 1.875em;
-}
-
 .movie__details--text {
   color: var(--clr-light-gray);
   font-size: var(--font-size-xs);
   line-height: 1.43;
 }
 
-@media (min-width: 500px) {
+@media (min-width: 600px) {
   .nav {
     flex-flow: row;
   }
@@ -293,5 +265,6 @@ Movies
   }
   .btn--watchlist {
     width: auto;
+    padding: 0.75em 1em;
   }
 }
