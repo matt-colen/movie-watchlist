@@ -4,11 +4,11 @@ import "./MovieResults.css";
 import { MovieContext } from "./Layout";
 
 export default function MovieResults() {
-  const { movieData } = useContext(MovieContext);
+  const { movieData, movieElements } = useContext(MovieContext);
 
   return (
     <section id="results" className="results grid">
-      {!movieData?.length > 0 && <Welcome />}
+      {!movieData.length > 0 ? <Welcome /> : movieElements}
     </section>
   );
 }

@@ -1,6 +1,10 @@
+import { useContext } from "react";
+import { MovieContext } from "./Layout";
 import "./Search.css";
 
-export default function Search({ inputValue, setInputValue, handleSearch }) {
+export default function Search() {
+  const { inputValue, setInputValue, handleSearch } = useContext(MovieContext);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     handleSearch();
@@ -18,7 +22,7 @@ export default function Search({ inputValue, setInputValue, handleSearch }) {
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
         />
-        <button id="search-btn" className="btn btn--primary" type="submit">
+        <button id="search-btn" className="btn btn--primary">
           Search
         </button>
       </div>

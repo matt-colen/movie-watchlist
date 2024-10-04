@@ -28,16 +28,8 @@
   opacity: 0.8;
 }
 
-.title {
-  font-size: var(--font-size-xl);
-  font-weight: 800;
-  line-height: 0.85;
-  letter-spacing: -1.926px;
-}
-
-.selected {
+a.selected {
   text-decoration: underline;
-  font-size: 2rem;
 }
 
 .nav-link {
