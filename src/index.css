@@ -46,10 +46,6 @@ input {
   display: grid;
 }
 
-.underline {
-  text-decoration: underline;
-}
-
 @media (min-width: 600px) {
   .nav {
     flex-flow: row;

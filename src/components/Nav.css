@@ -14,7 +14,7 @@
   grid-area: nav;
   justify-content: end;
   align-items: center;
-  gap: 1em;
+  gap: 2em;
   flex-flow: column;
 }
 
@@ -33,6 +33,11 @@
   font-weight: 800;
   line-height: 0.85;
   letter-spacing: -1.926px;
+}
+
+.selected {
+  text-decoration: underline;
+  font-size: 2rem;
 }
 
 .nav-link {

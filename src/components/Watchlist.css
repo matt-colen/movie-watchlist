@@ -9,6 +9,15 @@
   margin: 0 auto;
 }
 
+a.btn--secondary {
+  display: inline-block;
+  background: transparent;
+  color: var(--clr-white);
+  border: 2px solid var(--clr-cta);
+  padding: 0.5em 1em;
+  text-decoration: none;
+}
+
 .btn--watchlist {
   width: 100%;
   margin: 1em 0;

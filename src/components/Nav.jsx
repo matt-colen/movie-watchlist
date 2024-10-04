@@ -9,7 +9,7 @@ export default function Nav() {
         <NavLink
           to="/"
           className={({ isActive }) =>
-            `nav-link ${isActive ? "underline" : ""}`
+            `nav-link ${isActive ? "selected" : ""}`
           }
         >
           Search
@@ -17,10 +17,10 @@ export default function Nav() {
         <NavLink
           to="/watchlist"
           className={({ isActive }) =>
-            `nav-link ${isActive ? "underline" : ""}`
+            `nav-link ${isActive ? "selected" : ""}`
           }
         >
-          My Watchlist
+          Watchlist
         </NavLink>
       </nav>
     </header>

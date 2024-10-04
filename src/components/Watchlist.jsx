@@ -6,7 +6,7 @@ export default function Watchlist() {
     <section id="results" className="results grid">
       <div className="icon__container">
         <p>Your watchlist is looking a little empty...</p>
-        <NavLink to="/">Let's add some movies!</NavLink>
+        <NavLink className="btn btn--secondary" to="/">Add Some Movies</NavLink>
       </div>
     </section>
   );
