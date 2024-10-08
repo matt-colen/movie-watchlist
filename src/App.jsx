@@ -11,7 +11,7 @@ export default function App() {
   const [searchResults, setSearchResults] = useState([]);
   const [fullMovieData, setFullMovieData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [inputError, setInputError] = useState(null);
+  const [inputError, setInputError] = useState(false);
   const [fetchError, setFetchError] = useState(null);
 
   useEffect(() => {
@@ -56,6 +56,7 @@ export default function App() {
       }
 
       const data = await res.json();
+      setInputError(false);
       setFetchError(null);
       clearInput();
       setSearchResults(data.Search);

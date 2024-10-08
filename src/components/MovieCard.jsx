@@ -1,3 +1,5 @@
+import "./MovieCard.css";
+
 export default function MovieCard({
   Title,
   imdbRating,
@@ -7,7 +9,7 @@ export default function MovieCard({
   Poster,
 }) {
   return (
-    <div id="${movie.imdbID}" className="movie grid">
+    <div className="movie grid">
       <img
         className="movie__poster"
         src={Poster}
@@ -35,7 +37,7 @@ export default function MovieCard({
             {Genre}
           </p>
         </div>
-
+        <button className="btn btn--watchlist">Add to Watchlist</button>
         <div id="movie__details--text" className="movie__details--text">
           <p>{Plot}</p>
         </div>
