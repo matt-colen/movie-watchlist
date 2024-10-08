@@ -38,7 +38,6 @@ export default function Layout() {
   }, [movieData]);
 
   const handleSearch = async () => {
-    if (!inputValue) return; // Don't fetch if input is empty
     clearInput();
 
     try {
