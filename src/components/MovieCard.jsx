@@ -1,20 +1,27 @@
+import { useContext } from "react";
+import App, { AppContext } from "../App";
 import "./MovieCard.css";
 
 export default function MovieCard({
   Title,
   imdbRating,
+  imdbID,
   Runtime,
   Genre,
   Plot,
   Poster,
 }) {
+  const { handleWatchlistClick } = useContext(AppContext);
+
   return (
     <div className="movie grid">
-      <img
-        className="movie__poster"
-        src={Poster}
-        alt={`Movie poster for ${Title}`}
-      />
+      <div className="movie__poster-container">
+        <img
+          className="movie__poster"
+          src={Poster}
+          alt={`Movie poster for ${Title}`}
+        />
+      </div>
       <div className="movie__details">
         <div className="movie__details--primary flex">
           <h2 className="movie-title">{Title}</h2>
@@ -37,7 +44,13 @@ export default function MovieCard({
             {Genre}
           </p>
         </div>
-        <button className="btn btn--watchlist">Add to Watchlist</button>
+        <button
+          className="btn btn--watchlist"
+          id={imdbID}
+          onClick={(e) => handleWatchlistClick(e)}
+        >
+          Add to Watchlist
+        </button>
         <div id="movie__details--text" className="movie__details--text">
           <p>{Plot}</p>
         </div>

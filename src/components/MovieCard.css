@@ -6,7 +6,6 @@
 
 .movie__poster {
   width: 100%;
-  object-fit: cover;
   border-radius: var(--radius-poster);
 }
 

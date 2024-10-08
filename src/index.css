@@ -49,7 +49,7 @@ input {
 .error {
   margin-top: 1em;
   background: var(--clr-remove);
-  padding: .5em 1em;
+  padding: 0.5em 1em;
   border-radius: var(--radius-soft);
   position: absolute;
   top: 100%;

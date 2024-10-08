@@ -1,15 +1,15 @@
-import { NavLink } from "react-router-dom";
+import { useContext } from "react";
+import { AppContext } from "../App";
+import WatchlistWelcome from "./WatchlistWelcome";
+import Watchlist from "./Watchlist";
 import "./WatchlistPage.css";
 
 export default function WatchlistPage() {
+  const { watchlist } = useContext(AppContext);
+
   return (
     <section id="results" className="results grid">
-      <div className="icon__container">
-        <p>Your watchlist is looking a little empty...</p>
-        <NavLink className="btn btn--secondary" to="/">
-          Add some movies
-        </NavLink>
-      </div>
+      {!watchlist?.length > 0 ? <WatchlistWelcome /> : <Watchlist />}
     </section>
   );
 }

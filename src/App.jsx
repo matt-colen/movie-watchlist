@@ -1,4 +1,5 @@
 import { useState, useEffect, createContext } from "react";
+import { nanoid } from "nanoid";
 import { Outlet } from "react-router-dom";
 import Nav from "./components/Nav";
 import MovieCard from "./components/MovieCard";
@@ -46,6 +47,8 @@ export default function App() {
       return;
     }
 
+    setIsLoading(true);
+
     try {
       const res = await fetch(
         `/.netlify/functions/movieSearch?title=${inputValue}`
@@ -64,15 +67,23 @@ export default function App() {
       console.error(err);
       setFetchError(err);
     }
+
+    setIsLoading(false);
+  };
+
+  const handleWatchlistClick = (e) => {
+    console.log(e.target.id);
   };
 
   const clearInput = () => {
     setInputValue("");
   };
 
-  const movieElements = fullMovieData.map((movie, i) => (
-    <MovieCard {...movie} key={i} />
-  ));
+  const movieElements = fullMovieData.map((movie) => {
+    return <MovieCard {...movie} key={nanoid()} />;
+  });
+
+  console.log(fullMovieData);
 
   return (
     <AppContext.Provider
@@ -85,6 +96,8 @@ export default function App() {
         inputError,
         fetchError,
         movieElements,
+        isLoading,
+        handleWatchlistClick,
       }}
     >
       <div className="container grid">
