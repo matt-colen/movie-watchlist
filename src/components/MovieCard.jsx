@@ -1,4 +1,4 @@
-export default function MovieTile({
+export default function MovieCard({
   Title,
   imdbRating,
   Runtime,

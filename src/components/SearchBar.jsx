@@ -1,26 +1,14 @@
-import { useState, useContext } from "react";
-import { MovieContext } from "./Layout";
-import "./Search.css";
+import { useContext } from "react";
+import { AppContext } from "../App"
+import "./SearchBar.css";
 
-export default function Search() {
-  const [inputError, setInputError] = useState(false);
-  const { inputValue, setInputValue, handleSearch } = useContext(MovieContext);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    if (!inputValue) {
-      setInputError(true);
-      return;
-    } // Don't fetch if input is empty
-
-    setInputError(false);
-    handleSearch();
-  };
+export default function SearchBar() {
+  const { inputValue, setInputValue, handleSearch, inputError } =
+    useContext(AppContext);
 
   return (
     <>
-      <form id="search-form" onSubmit={handleSubmit}>
+      <form id="search-form" onSubmit={handleSearch}>
         <div className="search-bar grid">
           <input
             id="search-bar__input"

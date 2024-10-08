@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
-import "./Watchlist.css";
+import "./WatchlistPage.css";
 
-export default function Watchlist() {
+export default function WatchlistPage() {
   return (
     <section id="results" className="results grid">
       <div className="icon__container">
