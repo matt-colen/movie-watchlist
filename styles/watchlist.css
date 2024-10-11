@@ -1,0 +1,10 @@
+.icon__container > a {
+  margin-top: 1em;
+  color: var(--clr-cta);
+  display: block;
+}
+
+.movie {
+  max-width: 700px;
+  margin: 0 auto;
+}

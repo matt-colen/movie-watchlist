@@ -1,8 +1,6 @@
 import { useState, useEffect, createContext } from "react";
-import { nanoid } from "nanoid";
 import { Outlet } from "react-router-dom";
 import Nav from "./components/Nav";
-import MovieCard from "./components/MovieCard";
 import "./App.css";
 
 const AppContext = createContext();
@@ -17,6 +15,8 @@ export default function App() {
 
   useEffect(() => {
     const getFullMovieData = async () => {
+      if (searchResults.length === 0) return; // Early return for initial render
+
       const movies = searchResults.map(async (movie) => {
         try {
           const res = await fetch(
@@ -36,7 +36,9 @@ export default function App() {
       });
       setFullMovieData(await Promise.all(movies));
     };
+
     getFullMovieData();
+    setIsLoading(false);
   }, [searchResults]);
 
   const handleSearch = async (e) => {
@@ -47,6 +49,7 @@ export default function App() {
       return;
     }
 
+    setInputError(false);
     setIsLoading(true);
 
     try {
@@ -59,7 +62,6 @@ export default function App() {
       }
 
       const data = await res.json();
-      setInputError(false);
       setFetchError(null);
       clearInput();
       setSearchResults(data.Search);
@@ -67,8 +69,6 @@ export default function App() {
       console.error(err);
       setFetchError(err);
     }
-
-    setIsLoading(false);
   };
 
   const handleWatchlistClick = (e) => {
@@ -79,11 +79,7 @@ export default function App() {
     setInputValue("");
   };
 
-  const movieElements = fullMovieData.map((movie) => {
-    return <MovieCard {...movie} key={nanoid()} />;
-  });
-
-  console.log(fullMovieData);
+  console.log(isLoading);
 
   return (
     <AppContext.Provider
@@ -95,7 +91,6 @@ export default function App() {
         fullMovieData,
         inputError,
         fetchError,
-        movieElements,
         isLoading,
         handleWatchlistClick,
       }}
