@@ -1,0 +1,33 @@
+.icon__container > a {
+  margin-top: 1em;
+  color: var(--clr-cta);
+  display: block;
+}
+
+.movie {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+a.btn--secondary {
+  display: inline-block;
+  background: transparent;
+  color: var(--clr-white);
+  border: 2px solid var(--clr-cta);
+  padding: 0.5em 1em;
+  text-decoration: none;
+}
+
+.btn--watchlist {
+  width: 100%;
+  margin: 1em 0;
+  padding: 1em;
+}
+
+.btn--remove {
+  background: var(--clr-remove);
+}
+
+.btn--remove:hover {
+  background: var(--clr-remove-hover);
+}

@@ -1,0 +1,52 @@
+/* Header */
+.header {
+  grid-area: head;
+  grid-template-columns: 5% 1fr 5%;
+  grid-template-areas: ". nav .";
+  background: url("/src/assets/images/nav-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  padding: 7em 0;
+  position: relative;
+}
+
+.nav {
+  grid-area: nav;
+  justify-content: end;
+  align-items: center;
+  gap: 2em;
+  flex-flow: column;
+}
+
+.nav-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--clr-black);
+  opacity: 0.8;
+}
+
+a.selected {
+  text-decoration: underline;
+}
+
+.nav-link {
+  color: var(--clr-white);
+  font-size: var(--font-size-m);
+  font-weight: bold;
+  z-index: 99;
+  text-decoration: none;
+  transition: var(--transition-quick);
+}
+
+.nav-link:hover {
+  text-decoration: underline;
+}
+
+.nav-link--sm {
+  font-size: var(--font-size-s);
+  font-weight: 700;
+  line-height: 1.43;
+}

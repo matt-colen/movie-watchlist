@@ -1,0 +1,12 @@
+.btn--watchlist {
+  margin: 1em 0;
+  padding: 1em;
+}
+
+.btn--remove {
+  background: var(--clr-remove);
+}
+
+.btn--remove:hover {
+  background: var(--clr-remove-hover);
+}
