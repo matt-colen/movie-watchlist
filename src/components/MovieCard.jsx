@@ -1,6 +1,6 @@
 import WatchlistBtn from "./WatchlistBtn";
 import "./MovieCard.css";
-import starIcon from "src/assets/star.svg";
+import starIcon from "/src/assets/icons/star.svg";
 
 export default function MovieCard({
   Title,

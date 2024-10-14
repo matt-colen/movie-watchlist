@@ -1,5 +1,5 @@
 import "./SearchWelcome.css";
-import exploringIcon from "src/assets/exploring.svg";
+import exploringIcon from "/src/assets/icons/exploring.svg";
 
 export default function SearchWelcome() {
   return (
