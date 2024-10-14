@@ -1,5 +1,6 @@
 import WatchlistBtn from "./WatchlistBtn";
 import "./MovieCard.css";
+import starIcon from "/src/assets/star.svg";
 
 export default function MovieCard({
   Title,
@@ -10,7 +11,6 @@ export default function MovieCard({
   Plot,
   Poster,
 }) {
-
   return (
     <div className="movie grid">
       <div className="movie__poster-container">
@@ -24,11 +24,7 @@ export default function MovieCard({
         <div className="movie__details--primary flex">
           <h2 className="movie-title">{Title}</h2>
           <div className="movie-rating__container flex">
-            <img
-              className="icon--favorite"
-              src="/src/assets/icons/star.svg"
-              alt="Star icon"
-            />
+            <img className="icon--favorite" src={starIcon} alt="Star icon" />
             <p id="movie-rating" className="movie-rating">
               {imdbRating}
             </p>
