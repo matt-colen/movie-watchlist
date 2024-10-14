@@ -1,4 +1,19 @@
 .loading-header {
   margin-top: 3em;
   font-size: 3rem;
+  justify-content: center;
+  gap: .5em;
+}
+
+.spinner {
+  animation: spin 5s infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
