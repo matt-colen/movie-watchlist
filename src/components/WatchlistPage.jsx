@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { AppContext } from "../App";
 import WatchlistWelcome from "./WatchlistWelcome";
-import Watchlist from "./Watchlist";
+import WatchlistGrid from "./WatchlistGrid";
 import "./WatchlistPage.css";
 
 export default function WatchlistPage() {
@@ -9,7 +9,7 @@ export default function WatchlistPage() {
 
   return (
     <section id="results" className="results grid">
-      {!watchlist?.length > 0 ? <WatchlistWelcome /> : <Watchlist />}
+      {!watchlist?.length > 0 ? <WatchlistWelcome /> : <WatchlistGrid />}
     </section>
   );
 }

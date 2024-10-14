@@ -1,5 +1,4 @@
-import { useContext } from "react";
-import App, { AppContext } from "../App";
+import WatchlistBtn from "./WatchlistBtn";
 import "./MovieCard.css";
 
 export default function MovieCard({
@@ -11,7 +10,6 @@ export default function MovieCard({
   Plot,
   Poster,
 }) {
-  const { handleWatchlistClick } = useContext(AppContext);
 
   return (
     <div className="movie grid">
@@ -44,13 +42,7 @@ export default function MovieCard({
             {Genre}
           </p>
         </div>
-        <button
-          className="btn btn--watchlist"
-          id={imdbID}
-          onClick={(e) => handleWatchlistClick(e)}
-        >
-          Add to Watchlist
-        </button>
+        <WatchlistBtn id={imdbID} />
         <div id="movie__details--text" className="movie__details--text">
           <p>{Plot}</p>
         </div>

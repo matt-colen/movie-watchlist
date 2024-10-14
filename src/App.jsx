@@ -28,7 +28,11 @@ export default function App() {
           }
 
           setFetchError(null);
-          return await res.json();
+          const data = await res.json();
+          return {
+            ...data,
+            inWatchlist: false,
+          };
         } catch (err) {
           console.error(err);
           setFetchError(err);
@@ -72,14 +76,23 @@ export default function App() {
   };
 
   const handleWatchlistClick = (e) => {
-    console.log(e.target.id);
+    const movieId = e.target.id;
+    setFullMovieData((prevMovieData) => {
+      return prevMovieData.map((movie) => {
+        if (movie.imdbID === movieId) {
+          return {
+            ...movie,
+            inWatchlist: !movie.inWatchlist,
+          };
+        }
+        return movie;
+      });
+    });
   };
 
   const clearInput = () => {
     setInputValue("");
   };
-
-  console.log(isLoading);
 
   return (
     <AppContext.Provider
