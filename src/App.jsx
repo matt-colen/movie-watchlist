@@ -9,6 +9,15 @@ export default function App() {
   const [inputValue, setInputValue] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [fullMovieData, setFullMovieData] = useState([]);
+  const [watchlist, setWatchlist] = useState(() => {
+    try {
+      const savedWatchlist = localStorage.getItem("watchlist");
+      return savedWatchlist ? JSON.parse(savedWatchlist) : [];
+    } catch (error) {
+      console.error("Failed to parse watchlist from localStorage:", error);
+      return []; // Returns an empty array if parsing fails
+    }
+  });
   const [isLoading, setIsLoading] = useState(false);
   const [inputError, setInputError] = useState(false);
   const [fetchError, setFetchError] = useState(null);
@@ -29,21 +38,28 @@ export default function App() {
 
           setFetchError(null);
           const data = await res.json();
+
+          // Check if the movie is already in the watchlist
+          const isInWatchlist = watchlist.some(
+            (watchlistMovie) => watchlistMovie.imdbID === data.imdbID
+          );
+
           return {
             ...data,
-            inWatchlist: false,
+            inWatchlist: isInWatchlist, // Sync inWatchlist flag with actual watchlist
           };
         } catch (err) {
           console.error(err);
           setFetchError(err);
         }
       });
+
       setFullMovieData(await Promise.all(movies));
     };
 
     getFullMovieData();
     setIsLoading(false);
-  }, [searchResults]);
+  }, [searchResults, watchlist]);
 
   const handleSearch = async (e) => {
     e.preventDefault();
@@ -76,20 +92,61 @@ export default function App() {
   };
 
   const handleWatchlistClick = (e) => {
-    const movieId = e.target.id;
-    setFullMovieData((prevMovieData) => {
-      return prevMovieData.map((movie) => {
-        if (movie.imdbID === movieId) {
-          return {
-            ...movie,
-            inWatchlist: !movie.inWatchlist,
-          };
+    const clickedMovieId = e.target.id;
+
+    // Update fullMovieData if available (for pages that use it)
+    setFullMovieData((prevFullMovieData) => {
+      return prevFullMovieData.map((movie) => {
+        if (movie.imdbID === clickedMovieId) {
+          const updatedMovie = { ...movie, inWatchlist: !movie.inWatchlist };
+
+          // Toggle the movie in the watchlist
+          setWatchlist((prevWatchlist) => {
+            const isInWatchlist = prevWatchlist.some(
+              (watchlistMovie) => watchlistMovie.imdbID === updatedMovie.imdbID
+            );
+
+            if (updatedMovie.inWatchlist && !isInWatchlist) {
+              return [...prevWatchlist, updatedMovie];
+            } else if (!updatedMovie.inWatchlist && isInWatchlist) {
+              return prevWatchlist.filter(
+                (watchlistMovie) =>
+                  watchlistMovie.imdbID !== updatedMovie.imdbID
+              );
+            }
+
+            return prevWatchlist; // Return previous watchlist if no changes
+          });
+
+          return updatedMovie;
         }
         return movie;
       });
     });
+
+    // Directly update watchlist when fullMovieData isn't available
+    setWatchlist((prevWatchlist) => {
+      const isInWatchlist = prevWatchlist.some(
+        (movie) => movie.imdbID === clickedMovieId
+      );
+
+      if (isInWatchlist) {
+        return prevWatchlist.filter((movie) => movie.imdbID !== clickedMovieId);
+      } else {
+        const movieToAdd = fullMovieData.find(
+          (movie) => movie.imdbID === clickedMovieId
+        );
+        return [...prevWatchlist, movieToAdd];
+      }
+    });
   };
 
+  // Updates localStorage when watchlist changes
+  useEffect(() => {
+    localStorage.setItem("watchlist", JSON.stringify(watchlist));
+  }, [watchlist]);
+
+  // Clears search input field
   const clearInput = () => {
     setInputValue("");
   };
@@ -106,6 +163,7 @@ export default function App() {
         fetchError,
         isLoading,
         handleWatchlistClick,
+        watchlist,
       }}
     >
       <div className="container grid">
