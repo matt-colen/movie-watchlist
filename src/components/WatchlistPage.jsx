@@ -5,11 +5,16 @@ import WatchlistGrid from "./WatchlistGrid";
 import "./WatchlistPage.css";
 
 export default function WatchlistPage() {
-  const { watchlist } = useContext(AppContext);
+  const { fullMovieData } = useContext(AppContext);
+  const watchlistMovies = fullMovieData.filter((movie) => movie.inWatchlist);
 
   return (
     <section id="results" className="results grid">
-      {!watchlist?.length > 0 ? <WatchlistWelcome /> : <WatchlistGrid />}
+      {!watchlistMovies.length > 0 ? (
+        <WatchlistWelcome />
+      ) : (
+        <WatchlistGrid watchlistMovies={watchlistMovies} />
+      )}
     </section>
   );
 }
