@@ -23,14 +23,14 @@ export default function MovieCard({
       <div className="movie__details">
         <div className="movie__details--primary flex">
           <h2 className="movie-title">{Title}</h2>
+        </div>
+        <div className="movie__details--secondary flex">
           <div className="movie-rating__container flex">
             <img className="icon--favorite" src={starIcon} alt="Star icon" />
             <p id="movie-rating" className="movie-rating">
               {imdbRating}
             </p>
           </div>
-        </div>
-        <div className="movie__details--secondary flex">
           <p id="movie-length" className="movie-length">
             {Runtime}
           </p>
