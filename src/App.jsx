@@ -94,40 +94,21 @@ export default function App() {
   const handleWatchlistClick = (e) => {
     const clickedMovieId = e.target.id;
 
-    // Update fullMovieData if available (for pages that use it)
+    // Update fullMovieData
     setFullMovieData((prevFullMovieData) => {
       return prevFullMovieData.map((movie) => {
         if (movie.imdbID === clickedMovieId) {
           const updatedMovie = { ...movie, inWatchlist: !movie.inWatchlist };
-
-          // Toggle the movie in the watchlist
-          setWatchlist((prevWatchlist) => {
-            const isInWatchlist = prevWatchlist.some(
-              (watchlistMovie) => watchlistMovie.imdbID === updatedMovie.imdbID
-            );
-
-            if (updatedMovie.inWatchlist && !isInWatchlist) {
-              return [...prevWatchlist, updatedMovie];
-            } else if (!updatedMovie.inWatchlist && isInWatchlist) {
-              return prevWatchlist.filter(
-                (watchlistMovie) =>
-                  watchlistMovie.imdbID !== updatedMovie.imdbID
-              );
-            }
-
-            return prevWatchlist; // Return previous watchlist if no changes
-          });
-
           return updatedMovie;
         }
         return movie;
       });
     });
 
-    // Directly update watchlist when fullMovieData isn't available
+    // Update watchlist separately
     setWatchlist((prevWatchlist) => {
       const isInWatchlist = prevWatchlist.some(
-        (movie) => movie.imdbID === clickedMovieId
+        (watchlistMovie) => watchlistMovie.imdbID === clickedMovieId
       );
 
       if (isInWatchlist) {

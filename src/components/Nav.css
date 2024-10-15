@@ -6,7 +6,7 @@
   background: url("/src/assets/images/nav-bg.jpg");
   background-size: cover;
   background-position: center;
-  padding: 7em 0;
+  padding: 3em 0;
   position: relative;
 }
 
@@ -39,6 +39,7 @@ a.selected {
   z-index: 99;
   text-decoration: none;
   transition: var(--transition-quick);
+  text-transform: uppercase;
 }
 
 .nav-link:hover {
@@ -49,4 +50,10 @@ a.selected {
   font-size: var(--font-size-s);
   font-weight: 700;
   line-height: 1.43;
+}
+
+@media (min-width: 600px) {
+  .header {
+    padding: 7em 0;
+  }
 }
