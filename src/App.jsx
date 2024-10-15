@@ -55,10 +55,10 @@ export default function App() {
       });
 
       setFullMovieData(await Promise.all(movies));
+      setIsLoading(false);
     };
 
     getFullMovieData();
-    setIsLoading(false);
   }, [searchResults, watchlist]);
 
   const handleSearch = async (e) => {
