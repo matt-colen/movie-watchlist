@@ -1,6 +1,6 @@
 # Movie-Watchlist
 
-An app that allows users to search for movies using the Open Movie Database (OMDb) and save to a watchlist using localStorage
+An app that allows users to search for movies using the Open Movie Database (OMDb) and add to or remove movies from their watchlist using localStorage
 
 ## Features: 
 
